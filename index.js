@@ -28,8 +28,8 @@ document.querySelector('.monsters').append(monster);
 
 }
 
-noFound();
-function noFound(){
+notFound();
+function notFound(){
 
 const notFoundDiv = document.createElement('div');
 notFoundDiv.className = 'p-5 not-found';
@@ -53,6 +53,9 @@ function(e){
     const keyword = e.target.value.toLowerCase();
     
     const findmonter = document.querySelectorAll('.monster');
+
+    let notFound = true;
+
     for (let monster of findmonter){
         
         const name = monster.children[1].innerText.toLowerCase();
@@ -61,8 +64,18 @@ function(e){
 
         if (name.includes(keyword) || email.includes(keyword) ){
             monster.style.display = 'block';
+            notFound = false;
+
         }else{
             monster.style.display = 'none';
+          
+
         }
     }
-})
+    if(notFound){
+        document.querySelector('.not-found').style.display = 'block';
+    }else{
+        document.querySelector('.not-found').style.display = 'none';
+    }
+
+});
